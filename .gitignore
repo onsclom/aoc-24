@@ -176,3 +176,5 @@ dist
 
 # don't share input
 test.txt
+input.txt
+a.out

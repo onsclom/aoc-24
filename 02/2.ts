@@ -8,13 +8,14 @@ const safe = lines.filter((line) => {
       ...line.slice(i + 1),
     ]),
   ];
-
   function checkLine(line: number[]) {
     // check if all ascending or descending
     const dir = Math.sign(line[1] - line[0]);
-
+    if (dir === 0) {
+      return false;
+    }
     for (let i = 1; i < line.length; i++) {
-      if (Math.sign(line[i] - line[i - 1]) !== dir || dir === 0) {
+      if (Math.sign(line[i] - line[i - 1]) !== dir) {
         return false;
       }
       if (Math.abs(line[i] - line[i - 1]) > 3) {
@@ -23,8 +24,6 @@ const safe = lines.filter((line) => {
     }
     return true;
   }
-
   return linePermutations.some(checkLine);
 });
-
 console.log(safe.length);
