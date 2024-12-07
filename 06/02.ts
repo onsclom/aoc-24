@@ -1,4 +1,5 @@
 // TODO: recreate part 1
+// TODO: printing should copy thing to my clipboard!
 
 import * as _ from "../aoc-utils"
 
@@ -10,7 +11,6 @@ const dirs = [
   [0, 1],
   [-1, 0],
 ]
-let dirNum = 0
 
 let cur = [0, 0]
 for (let y = 0; y < grid.length; y++) {
@@ -52,16 +52,11 @@ for (let i = 0; i < width * height; i++) {
     const curDir = dirs[dirNum % dirs.length]
     const target = [cur[0] + curDir[0], cur[1] + curDir[1]]
 
-    if (
-      target[0] < 0 ||
-      target[0] >= width ||
-      target[1] < 0 ||
-      target[1] >= height
-    ) {
+    const targetItem = grid[target[1]]?.[target[0]]
+    if (targetItem === undefined) {
       break
     }
 
-    const targetItem = grid[target[1]][target[0]]
     if (targetItem === "#") {
       dirNum++
       continue

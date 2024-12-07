@@ -1,3 +1,5 @@
+import clipboard from "clipboardy"
+
 export const input = (await Bun.file("./input.txt").text()).trim()
 export const test = (await Bun.file("./test.txt").text()).trim()
 export const letters = "abcdefghijklmnopqrstuvwxyz".split("")
@@ -16,6 +18,7 @@ export function sum(arr: number[]): number {
 
 export function tap<T>(a: T) {
   console.log(a)
+  clipboard.writeSync(String(a))
   return a
 }
 
