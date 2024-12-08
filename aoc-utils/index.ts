@@ -1,7 +1,8 @@
 import clipboard from "clipboardy"
+import { readFileSync } from "fs"
 
-export const input = (await Bun.file("./input.txt").text()).trim()
-export const test = (await Bun.file("./test.txt").text()).trim()
+export const input = readFileSync("./input.txt", "utf8").trim()
+export const test = readFileSync("./test.txt", "utf8").trim()
 export const letters = "abcdefghijklmnopqrstuvwxyz".split("")
 export const digits = "0123456789".split("")
 
@@ -55,4 +56,12 @@ export function combinations<T>(arr: T[], k: number): T[][] {
     ...combinations(tail, k - 1).map((comb) => [head, ...comb]),
     ...combinations(tail, k),
   ]
+}
+
+export function chunk<T>(arr: T[], size: number): T[][] {
+  const chunks = [] as T[][]
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size))
+  }
+  return chunks
 }
