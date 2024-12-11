@@ -1,4 +1,3 @@
-// TODO: recreate pt 1
 import * as _ from "../aoc-utils"
 
 const a = _.input.split("\n").map((line) => line.split("").map(Number))

@@ -5,6 +5,19 @@ export const input = readFileSync("./input.txt", "utf8").trim()
 export const test = readFileSync("./test.txt", "utf8").trim()
 export const letters = "abcdefghijklmnopqrstuvwxyz".split("")
 export const digits = "0123456789".split("")
+export const cardinals = [
+  [0, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+]
+export const diagonals = [
+  [1, 1],
+  [1, -1],
+  [-1, 1],
+  [-1, -1],
+]
+export const allDirections = [...cardinals, ...diagonals]
 
 export function range(a: number, b?: number): number[] {
   if (b === undefined) {
@@ -64,4 +77,19 @@ export function chunk<T>(arr: T[], size: number): T[][] {
     chunks.push(arr.slice(i, i + size))
   }
   return chunks
+}
+
+export function createCache<Args extends any[], V>(
+  fn: (...args: Args) => V,
+): (...args: Args) => V {
+  const cache = new Map<string, V>()
+  return (...args: Args): V => {
+    const keyString = JSON.stringify(args) // poor man's deep equality
+    if (cache.has(keyString)) {
+      return cache.get(keyString)!
+    }
+    const result = fn(...args)
+    cache.set(keyString, result)
+    return result
+  }
 }
