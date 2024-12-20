@@ -1,0 +1,26 @@
+Register A: 0
+Register B: 0
+Register C: 0
+
+Combo operands 0 through 3 represent literal values 0 through 3.
+Combo operand 4 represents the value of register A.
+Combo operand 5 represents the value of register B.
+Combo operand 6 represents the value of register C.
+Combo operand 7 is reserved and will not appear in valid programs.
+
+
+Register A: 0
+Register B: some number divisible by 8
+Register C: 0
+
+a = Math.floor(a/2**a)
+b = b ^ 1
+c = Math.floor(a/2**b)
+a = Math.floor(a/2**3)
+b = b ^ 4
+b = b ^ c
+print( b % 8 )
+repeat if a != 0
+
+
+2,4,1,1,7,5,0,3,1,4,4,5,5,5,3,0
